@@ -9,4 +9,4 @@ npm run build
 </pre>
 
 #### Example
-[demo](http://sbtest.com)
+[demo](http://sbtest.com/redux)
