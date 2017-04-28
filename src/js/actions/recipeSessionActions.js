@@ -7,7 +7,6 @@ const viewURL = baseURL + 'platform/recipe_api.php?view=recipe&id=';
 const postURL = baseURL + 'platform/api_signin.php';
 
 export function fetchSession(myData) {
-    debugger;
     return function(dispatch) {
         // axios doesn't form encode data
         $.ajax({

@@ -28,7 +28,7 @@ const LoginForm = React.createClass({
             return;
         }
 
-        return this.props.needscope.fetchSession({user: user, pass: pass}).bind(this);
+        return this.props.needscope.fetchSession({user: user, pass: pass});
     },
     render: function () {
         let data = this.props.data;
