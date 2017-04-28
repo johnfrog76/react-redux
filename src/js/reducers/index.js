@@ -1,13 +1,14 @@
 import { combineReducers } from "redux"
-
-import tweets from "./tweetsReducer"
-import user from "./userReducer"
 import portfolio from "./portfolioReducer"
 import fiddles from "./fiddleReducer"
+import recipes from "./recipeReducer"
+import recipe from "./recipeSingleReducer"
+import session from "./recipeSessionReducer"
 
 export default combineReducers({
-  tweets,
-  user,
-  portfolio,
-  fiddles
+    portfolio,
+    fiddles,
+    recipes,
+    recipe,
+    session
 })

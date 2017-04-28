@@ -21,6 +21,11 @@ p {
     color: #3A90AB !important;
 }
 
+input[type="text"],
+input[type="password"] {
+    color: #31758d;
+}
+
 .form-control:focus {
     outline: 0;
     box-shadow: none;
