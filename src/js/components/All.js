@@ -77,7 +77,7 @@ class LoginForm extends React.Component {
             return;
         }
 
-        return this.props.needscope.fetchSession({user: user, pass: pass});
+        return this.props.layout.fetchSession({user: user, pass: pass});
     }
     render () {
         let data = this.props.data;
@@ -120,7 +120,7 @@ class RecipeTable extends React.Component {
     }
     _handleClick (evt) {
         evt.preventDefault();
-        this.props.needscope.onViewRecipeDetail(parseFloat(evt.target.id));
+        this.props.layout.onViewRecipeDetail(parseFloat(evt.target.id));
         evt.target.blur();
     }
     render() {
@@ -170,7 +170,7 @@ class RecipeViewDetails extends React.Component {
     }
     _handleClick(e) {
         e.preventDefault();
-        this.props.needscope.fetchRecipes(e);
+        this.props.layout.fetchRecipes(e);
     }
     render() {
         const data = this.props.data.recipe;

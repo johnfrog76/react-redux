@@ -113,17 +113,17 @@ export default class Layout extends React.Component {
             // gated by session
             if (recipes.fetched) {
                 tab = <RecipeTable data={recipes.recipeitems}
-                    needscope={this}
+                    layout={this}
                     onViewRecipeDetail={this.onViewRecipeDetail}
                 />
             } else if (recipe.fetched) {
                 tab = <RecipeViewDetails
-                    needscope={this}
+                    layout={this}
                     data={recipe}
                 />
             }
         } else if (session.showForm) {
-             tab = <LoginForm needscope={this} data={session} />
+             tab = <LoginForm layout={this} data={session} />
         }
 
         return <div>
