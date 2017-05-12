@@ -1,19 +1,26 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import {fetchPortfolio} from "../actions/portfolioActions"
-import {clearPortfolio} from "../actions/portfolioActions"
+import {
+    Button,
+    Navbar,
+    Nav,
+    NavItem
+} from 'react-bootstrap';
 
-import {fetchFiddles} from "../actions/fiddleActions"
-import {clearFiddles} from "../actions/fiddleActions"
+import {fetchPortfolio, clearPortfolio } from "../actions/portfolioActions"
+import {fetchFiddles, clearFiddles} from "../actions/fiddleActions"
+import {fetchSession, showLoginForm} from "../actions/recipeSessionActions"
+import {fetchRecipe, clearRecipe} from "../actions/recipeItemActions"
+import {fetchRecipes, clearRecipes} from "../actions/recipeActions"
 
-import {fetchSession} from "../actions/recipeSessionActions"
-import {showLoginForm} from "../actions/recipeSessionActions"
+import {
+    fetchSongs,
+    clearSongs,
+    updateSong,
+    pauseAllSongs
+} from "../actions/songsActions"
 
-import {fetchRecipes} from "../actions/recipeActions"
-import {fetchRecipe} from "../actions/recipeItemActions"
-import {clearRecipe} from "../actions/recipeItemActions"
-import {clearRecipes} from "../actions/recipeActions"
 import {
     LoadingSpinner,
     Portfolio,
@@ -21,7 +28,8 @@ import {
     LoginForm,
     RecipeTable,
     RecipeViewDetails,
-    ErrorComponent
+    ErrorComponent,
+    ViewSongs
 } from "../components/All"
 
 @connect((store) => {
@@ -30,7 +38,8 @@ import {
     fiddles: store.fiddles,
     session: store.session,
     recipes: store.recipes,
-    recipe: store.recipe
+    recipe: store.recipe,
+    songs: store.songs
   };
 })
 
@@ -39,48 +48,61 @@ export default class Layout extends React.Component {
         this.props.dispatch(fetchPortfolio())
     }
 
-    fetchPortfolio(e) {
-        e.preventDefault();
-        e.target.blur();
+    clearStore() {
         this.props.dispatch(clearRecipe())
         this.props.dispatch(clearRecipes())
         this.props.dispatch(clearFiddles())
+        this.props.dispatch(clearPortfolio())
+        this.props.dispatch(clearSongs())
+    }
+
+    fetchPortfolio(e) {
+        e.preventDefault();
+        e.target.blur();
+        this.clearStore();
         this.props.dispatch(fetchPortfolio())
     }
 
     showLoginForm(e) {
         e.preventDefault();
         e.target.blur();
-        this.props.dispatch(clearRecipe())
+        this.clearStore();
         this.props.dispatch(showLoginForm())
-        this.props.dispatch(clearFiddles())
-        this.props.dispatch(clearPortfolio())
+    }
+
+    updateSong(song) {
+        this.props.dispatch(updateSong(song))
+    }
+
+    pauseAllSongs() {
+        this.props.dispatch(pauseAllSongs())
     }
 
     fetchRecipes(e) {
         e.preventDefault();
         e.target.blur();
-        this.props.dispatch(clearRecipe())
-        this.props.dispatch(clearFiddles())
-        this.props.dispatch(clearPortfolio())
+        this.clearStore();
         this.props.dispatch(fetchRecipes())
     }
 
     fetchSession(obj) {
+        this.clearStore();
         this.props.dispatch(fetchSession(obj))
-        this.props.dispatch(clearFiddles())
-        this.props.dispatch(clearPortfolio())
-        this.props.dispatch(clearRecipe())
         this.props.dispatch(fetchRecipes())
     }
 
     fetchFiddles(e) {
         e.preventDefault();
         e.target.blur();
-        this.props.dispatch(clearRecipe())
-        this.props.dispatch(clearRecipes())
-        this.props.dispatch(clearPortfolio())
+        this.clearStore();
         this.props.dispatch(fetchFiddles())
+    }
+
+    fetchSongs(e) {
+        e.preventDefault();
+        e.target.blur();
+        this.clearStore();
+        this.props.dispatch(fetchSongs())
     }
 
     onViewRecipeDetail(recipeToShowID) {
@@ -93,7 +115,7 @@ export default class Layout extends React.Component {
     }
 
     render() {
-        const { portfolio, fiddles, recipes, recipe, session} = this.props;
+        const { portfolio, fiddles, recipes, recipe, session, songs} = this.props;
 
         let tab = <LoadingSpinner />
 
@@ -107,6 +129,12 @@ export default class Layout extends React.Component {
             tab = <ErrorComponent data={portfolio.error.message} />;
         } else if (fiddles.error) {
             tab = <ErrorComponent data={fiddles.error.message} />;
+        } else if (songs.error) {
+            tab = <ErrorComponent data={songs.error.message} />;
+        } else if (songs.fetching) {
+            tab = <LoadingSpinner />
+        }  else if (songs.fetched) {
+            tab = <ViewSongs layout={this} data={songs.songitems} />
         } else if (session.error) {
             tab = <ErrorComponent data={session.error} />;
         } else if (session.fetched) {
@@ -127,19 +155,53 @@ export default class Layout extends React.Component {
         }
 
         return <div>
-            <nav>
-                <div>
-                    <a href="#" className={this.isActive(this.props.portfolio.isActive)}
-                        onClick={this.fetchPortfolio.bind(this)}>Portfolio
-                    </a>&nbsp;/&nbsp;
-                    <a href="#" className={this.isActive(this.props.fiddles.isActive)}
-                        onClick={this.fetchFiddles.bind(this)}>Fiddles
-                    </a>&nbsp;/&nbsp;
-                    <a href="#" className={this.isActive(this.props.recipes.isActive)}
-                        onClick={this.showLoginForm.bind(this)}>Recipes</a>
+            <Navbar inverse collapseOnSelect>
+                <Navbar.Header>
+                    <Navbar.Toggle />
+                    <Navbar.Brand>
+                        <a href="#">JW</a>
+                    </Navbar.Brand>
+                </Navbar.Header>
+                    <Navbar.Collapse>
+                    <Nav>
+                        <NavItem
+                            eventKey={1}
+                            className={this.isActive(this.props.portfolio.isActive)}
+                            onClick={this.fetchPortfolio.bind(this)}
+                            href="#"
+                        >Portfolio
+                        </NavItem>
+                        <NavItem
+                            eventKey={2}
+                            className={this.isActive(this.props.fiddles.isActive)}
+                            onClick={this.fetchFiddles.bind(this)}
+                            href="#"
+                        >Fiddles
+                        </NavItem>
+                        <NavItem
+                            eventKey={3}
+                            className={this.isActive(this.props.recipes.isActive)}
+                            onClick={this.showLoginForm.bind(this)}
+                            href="#"
+                        >Recipes
+                        </NavItem>
+                        <NavItem
+                            eventKey={4}
+                            className={this.isActive(this.props.songs.isActive)}
+                            onClick={this.fetchSongs.bind(this)}
+                            href="#"
+                        >Songs
+                        </NavItem>
+                    </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            {tab}
+                        </div>
+                    </div>
                 </div>
-            </nav>
-            {tab}
-        </div>
+            </div>
     }
 }
