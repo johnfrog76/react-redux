@@ -148,7 +148,8 @@ iframe {
 }
 
 .songs ul {
-  margin-top: 4rem;
+    margin: 4rem 0 0 0;
+    padding: 0;
 }
 .songs ul li:first-of-type {
   border-top: 1px solid #444;
