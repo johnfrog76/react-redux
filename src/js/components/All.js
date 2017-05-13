@@ -256,7 +256,16 @@ class ViewSongs extends React.Component {
     _setInt(ele, progEle, pos) {
         let self = this;
         this.clearInt();
-        this.myInterval = setInterval(function(){ self.increment(ele, progEle, pos) }, 500);
+        this.myInterval = setInterval(function() {
+
+        // TODO: do this another way
+        if (document.getElementById(ele.id)) {
+            self.increment(ele, progEle, pos);
+        } else {
+            self.clearInt()
+        }
+
+    }, 1000);
     }
     _pauseAll() {
         let i;
