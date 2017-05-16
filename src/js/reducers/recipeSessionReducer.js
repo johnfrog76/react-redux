@@ -14,6 +14,7 @@ export default function reducer(state = {
                     fetching: false,
                     fetched: false,
                     isActive: false,
+                    showForm: false,
                     error: null,
                     sess: {}
                 }
@@ -22,14 +23,16 @@ export default function reducer(state = {
             {
                 return { ...state,
                     isActive: true,
-                    fetching: true
+                    fetching: true,
+                    showForm: false
                 }
             }
         case "FETCH_RECIPE_SESSION_REJECTED":
             {
                 return { ...state,
                     fetching: false,
-                    error: action.payload
+                    error: action.payload,
+                    showForm: false,
                 }
             }
         case "FETCH_RECIPE_SESSION_FULFILLED":
@@ -39,6 +42,7 @@ export default function reducer(state = {
                     fetching: false,
                     fetched: true,
                     isActive: true,
+                    showForm: false,
                     sess: action.payload
                 }
             }

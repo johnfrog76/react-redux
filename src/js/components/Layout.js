@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import _ from "lodash"
 
 import {
     Button,
@@ -10,7 +11,7 @@ import {
 
 import {fetchPortfolio, clearPortfolio } from "../actions/portfolioActions"
 import {fetchFiddles, clearFiddles} from "../actions/fiddleActions"
-import {fetchSession, showLoginForm} from "../actions/recipeSessionActions"
+import {fetchSession, showLoginForm, clearSession} from "../actions/recipeSessionActions"
 import {fetchRecipe, clearRecipe} from "../actions/recipeItemActions"
 import {fetchRecipes, clearRecipes} from "../actions/recipeActions"
 
@@ -67,7 +68,12 @@ export default class Layout extends React.Component {
         e.preventDefault();
         e.target.blur();
         this.clearStore();
-        this.props.dispatch(showLoginForm())
+
+        if (!_.isEmpty(this.props.session.sess)) {
+            this.props.dispatch(fetchRecipes())
+        } else {
+            this.props.dispatch(showLoginForm())
+        }
     }
 
     updateSong(song) {
@@ -137,8 +143,9 @@ export default class Layout extends React.Component {
             tab = <ViewSongs layout={this} data={songs.songitems} />
         } else if (session.error) {
             tab = <ErrorComponent data={session.error} />;
-        } else if (session.fetched) {
-            // gated by session
+        } else if (session.showForm === true) {
+            tab = <LoginForm layout={this} data={session} />
+        } else if (!_.isEmpty(session.sess) && session.showForm === false) {
             if (recipes.fetched) {
                 tab = <RecipeTable data={recipes.recipeitems}
                     layout={this}
@@ -150,8 +157,6 @@ export default class Layout extends React.Component {
                     data={recipe}
                 />
             }
-        } else if (session.showForm) {
-             tab = <LoginForm layout={this} data={session} />
         }
 
         return <div>
@@ -159,7 +164,11 @@ export default class Layout extends React.Component {
                 <Navbar.Header>
                     <Navbar.Toggle />
                     <Navbar.Brand>
-                        <a href="#">JW</a>
+                        <a
+                            href="#"
+                            onClick={this.fetchPortfolio.bind(this)}
+                        >JW
+                        </a>
                     </Navbar.Brand>
                 </Navbar.Header>
                     <Navbar.Collapse>
