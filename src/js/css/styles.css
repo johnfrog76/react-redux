@@ -48,6 +48,15 @@ p {
     color: #3A90AB !important;
 }
 
+form.MessageForm input {
+  margin-bottom: 10px;
+}
+
+form.MessageForm {
+  width: 300px;
+  margin: 0 auto;
+}
+
 input[type="text"],
 input[type="password"] {
     color: #31758d;
