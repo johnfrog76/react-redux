@@ -36,7 +36,8 @@
   },
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "production": "webpack -p"
   },
   "author": "jwebster",
   "license": "ISC"

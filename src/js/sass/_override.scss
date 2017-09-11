@@ -1,0 +1,23 @@
+
+/* bootstrap style overrides */
+
+.navbar-toggle {
+  float: left;
+  border: 0;
+  margin-left: 5px;
+  margin-right: auto;
+  margin-top: 9px;
+}
+
+.navbar-inverse .navbar-toggle {
+  &:hover, &:focus {
+    background-color: transparent;
+  }
+}
+
+.navbar-brand {
+  float: left;
+  padding: 14.5px 15px 14.5px 0;
+}
+
+/* end bootstrap style overrides */
