@@ -23,3 +23,9 @@ export function inactiveFiddles () {
     dispatch({type: 'INACTIVE_FIDDLE'})
   }
 }
+
+export function displayFiddles () {
+  return function (dispatch) {
+    dispatch({type: 'DISPLAY_FIDDLES'})
+  }
+}

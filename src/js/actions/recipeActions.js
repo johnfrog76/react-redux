@@ -39,3 +39,9 @@ export function inactiveRecipes () {
     dispatch({type: 'INACTIVE_RECIPES'})
   }
 }
+
+export function displayRecipes () {
+  return function (dispatch) {
+    dispatch({type: 'DISPLAY_RECIPES'})
+  }
+}

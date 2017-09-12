@@ -54,3 +54,9 @@ export function inactiveSongs () {
     dispatch({type: 'INACTIVE_SONGS'})
   }
 }
+
+export function displaySongs () {
+  return function (dispatch) {
+    dispatch({type: 'DISPLAY_SONGS'})
+  }
+}

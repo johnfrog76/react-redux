@@ -23,3 +23,9 @@ export function inactivePortfolio () {
     dispatch({type: 'INACTIVE_PORTFOLIO'})
   }
 }
+
+export function displayPortfolio () {
+  return function (dispatch) {
+    dispatch({type: 'DISPLAY_PORTFOLIO'})
+  }
+}

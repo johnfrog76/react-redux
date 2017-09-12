@@ -11,11 +11,13 @@ import {
 
 import {
   fetchPortfolio,
+  displayPortfolio,
   clearPortfolio,
   inactivePortfolio
 } from '../actions/portfolioActions'
 import {
   fetchFiddles,
+  displayFiddles,
   clearFiddles,
   inactiveFiddles
 } from '../actions/fiddleActions'
@@ -31,12 +33,14 @@ import {
 } from '../actions/recipeItemActions'
 import {
   fetchRecipes,
+  displayRecipes,
   clearRecipes,
   inactiveRecipes
 } from '../actions/recipeActions'
 
 import {
   fetchSongs,
+  displaySongs,
   clearSongs,
   inactiveSongs,
   updateSong,
@@ -73,6 +77,23 @@ export default class Layout extends React.Component {
     this.props.dispatch(fetchSession({user: '1', pass: 'a'}))
   }
 
+  needsCache (key) {
+    // return true if needs cache refresh or null
+    const life = 1000 * 60 * 1
+    let myObj = this.props[key]
+    let ret = true; // assume needed
+
+    if (myObj.cache) {
+      // cache exists
+      let d = new Date();
+      let millis = d.getTime()
+      let diff = (millis - myObj.cache) - life
+
+      ret =  diff > 0 ? true : false; // gtn 0 refresh
+    }
+    return ret
+  }
+
   clearStore () {
     this.props.dispatch(clearRecipe())
     this.props.dispatch(clearRecipes())
@@ -93,17 +114,25 @@ export default class Layout extends React.Component {
     e.preventDefault()
     e.target.blur()
     this.clearTabs()
-    this.props.dispatch(fetchPortfolio())
+
+    if (this.needsCache('portfolio')) {
+      this.props.dispatch(fetchPortfolio())
+    } else {
+      this.props.dispatch(displayPortfolio())
+    }
   }
 
   showLoginForm (e) {
     e.preventDefault()
     e.target.blur()
-    //this.clearStore()
     this.clearTabs()
 
     if (!_.isEmpty(this.props.session.sess)) {
-      this.props.dispatch(fetchRecipes())
+      if (this.needsCache('recipes')) {
+        this.props.dispatch(fetchRecipes())
+      } else {
+        this.props.dispatch(displayRecipes())
+      }
     } else {
       this.props.dispatch(showLoginForm())
     }
@@ -120,15 +149,17 @@ export default class Layout extends React.Component {
   fetchRecipes (e) {
     e.preventDefault()
     e.target.blur()
-    //this.clearStore()
     this.clearTabs()
-    this.props.dispatch(fetchRecipes())
+
+    if (this.needsCache('recipes')) {
+      this.props.dispatch(fetchRecipes())
+    } else {
+      this.props.dispatch(displayRecipes())
+    }
   }
 
   fetchSession (obj) {
     this.clearTabs()
-    // this.clearStore()
-    //this.props.dispatch(fetchSession(obj))
     this.props.dispatch(fetchRecipes())
   }
 
@@ -136,20 +167,26 @@ export default class Layout extends React.Component {
     e.preventDefault()
     e.target.blur()
     this.clearTabs()
-    //this.clearStore()
-    this.props.dispatch(fetchFiddles())
+    if (this.needsCache('fiddles')) {
+      this.props.dispatch(fetchFiddles())
+    } else {
+      this.props.dispatch(displayFiddles())
+    }
   }
 
   fetchSongs (e) {
     e.preventDefault()
     e.target.blur()
-    //this.clearStore()
     this.clearTabs()
-    this.props.dispatch(fetchSongs())
+
+    if (this.needsCache('songs')) {
+      this.props.dispatch(fetchSongs())
+    } else {
+      this.props.dispatch(displaySongs())
+    }
   }
 
   onViewRecipeDetail (recipeToShowID) {
-    // this.props.dispatch(clearRecipes())
     this.props.dispatch(fetchRecipe(recipeToShowID))
   }
 
