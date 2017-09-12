@@ -17,3 +17,9 @@ export function clearFiddles () {
     dispatch({type: 'CLEAR_FIDDLE'})
   }
 }
+
+export function inactiveFiddles () {
+  return function (dispatch) {
+    dispatch({type: 'INACTIVE_FIDDLE'})
+  }
+}

@@ -16,6 +16,15 @@ export default function reducer (state = {
           recipe: {}
         }
       }
+    case 'INACTIVE_RECIPE':
+      {
+        return {...state,
+          fetching: false,
+          fetched: false,
+          isActive: false,
+          error: null
+        }
+      }
     case 'FETCH_RECIPE_PENDING':
       {
         return { ...state,

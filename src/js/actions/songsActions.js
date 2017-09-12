@@ -48,3 +48,9 @@ export function clearSongs () {
     dispatch({type: 'CLEAR_SONGS'})
   }
 }
+
+export function inactiveSongs () {
+  return function (dispatch) {
+    dispatch({type: 'INACTIVE_SONGS'})
+  }
+}

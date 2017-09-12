@@ -10,6 +10,9 @@ export default function reducer (state = {
     case 'CLEAR_SONGS': {
       return {...state, fetching: false, fetched: false, isActive: false, error: null, songitems: []}
     }
+    case 'INACTIVE_SONGS': {
+      return {...state, fetching: false, fetched: false, isActive: false, error: null}
+    }
     case 'FETCH_SONGS_PENDING': {
       return {...state, isActive: true, fetching: true}
     }

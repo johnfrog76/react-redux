@@ -33,3 +33,9 @@ export function clearRecipes () {
     dispatch({type: 'CLEAR_RECIPES'})
   }
 }
+
+export function inactiveRecipes () {
+  return function (dispatch) {
+    dispatch({type: 'INACTIVE_RECIPES'})
+  }
+}

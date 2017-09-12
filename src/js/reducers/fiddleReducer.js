@@ -10,6 +10,9 @@ export default function reducer (state = {
     case 'CLEAR_FIDDLE': {
       return {...state, fetching: false, fetched: false, isActive: false, error: null, fiddleitems: []}
     }
+    case 'INACTIVE_FIDDLE': {
+      return {...state, fetching: false, fetched: false, isActive: false, error: null}
+    }
     case 'FETCH_FIDDLE_ITEMS_PENDING': {
       return {...state, isActive: true, fetching: true}
     }

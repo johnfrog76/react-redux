@@ -17,3 +17,9 @@ export function clearPortfolio () {
     dispatch({type: 'CLEAR_PORTFOLIO'})
   }
 }
+
+export function inactivePortfolio () {
+  return function (dispatch) {
+    dispatch({type: 'INACTIVE_PORTFOLIO'})
+  }
+}

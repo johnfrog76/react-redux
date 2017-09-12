@@ -10,6 +10,9 @@ export default function reducer (state = {
     case 'CLEAR_PORTFOLIO': {
       return {...state, fetching: false, fetched: false, isActive: false, error: null, portfolioitems: []}
     }
+    case 'INACTIVE_PORTFOLIO': {
+      return {...state, fetching: false, fetched: false, isActive: false, error: null}
+    }
     case 'FETCH_PORTFOLIO_ITEMS_PENDING': {
       return {...state, isActive: true, fetching: true}
     }

@@ -3,35 +3,56 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 
 import {
-    Button,
-    Navbar,
-    Nav,
-    NavItem
+  Button,
+  Navbar,
+  Nav,
+  NavItem
 } from 'react-bootstrap'
 
-import {fetchPortfolio, clearPortfolio } from '../actions/portfolioActions'
-import {fetchFiddles, clearFiddles} from '../actions/fiddleActions'
-import {fetchSession, showLoginForm, clearSession} from '../actions/recipeSessionActions'
-import {fetchRecipe, clearRecipe} from '../actions/recipeItemActions'
-import {fetchRecipes, clearRecipes} from '../actions/recipeActions'
+import {
+  fetchPortfolio,
+  clearPortfolio,
+  inactivePortfolio
+} from '../actions/portfolioActions'
+import {
+  fetchFiddles,
+  clearFiddles,
+  inactiveFiddles
+} from '../actions/fiddleActions'
+import {
+  fetchSession,
+  showLoginForm,
+  clearSession
+} from '../actions/recipeSessionActions'
+import {
+  fetchRecipe,
+  clearRecipe,
+  inactiveRecipe
+} from '../actions/recipeItemActions'
+import {
+  fetchRecipes,
+  clearRecipes,
+  inactiveRecipes
+} from '../actions/recipeActions'
 
 import {
-    fetchSongs,
-    clearSongs,
-    updateSong,
-    pauseAllSongs
+  fetchSongs,
+  clearSongs,
+  inactiveSongs,
+  updateSong,
+  pauseAllSongs
 } from '../actions/songsActions'
 
 import {
-    LoadingSpinner,
-    Portfolio,
-    FiddlesJS,
-    LoginForm,
-    RecipeTable,
-    ResponsiveGrid,
-    RecipeViewDetails,
-    ErrorComponent,
-    ViewSongs
+  LoadingSpinner,
+  Portfolio,
+  FiddlesJS,
+  LoginForm,
+  RecipeTable,
+  ResponsiveGrid,
+  RecipeViewDetails,
+  ErrorComponent,
+  ViewSongs
 } from '../components/All'
 
 @connect((store) => {
@@ -47,7 +68,9 @@ import {
 
 export default class Layout extends React.Component {
   componentWillMount () {
+    // fetch session here
     this.props.dispatch(fetchPortfolio())
+    this.props.dispatch(fetchSession({user: '1', pass: 'a'}))
   }
 
   clearStore () {
@@ -58,17 +81,27 @@ export default class Layout extends React.Component {
     this.props.dispatch(clearSongs())
   }
 
+  clearTabs () {
+    this.props.dispatch(inactiveFiddles())
+    this.props.dispatch(inactivePortfolio())
+    this.props.dispatch(inactiveRecipes())
+    this.props.dispatch(inactiveRecipe())
+    this.props.dispatch(inactiveSongs())
+  }
+
   fetchPortfolio (e) {
     e.preventDefault()
     e.target.blur()
-    this.clearStore()
+    this.clearTabs()
+    // this.clearStore()
     this.props.dispatch(fetchPortfolio())
   }
 
   showLoginForm (e) {
     e.preventDefault()
     e.target.blur()
-    this.clearStore()
+    //this.clearStore()
+    this.clearTabs()
 
     if (!_.isEmpty(this.props.session.sess)) {
       this.props.dispatch(fetchRecipes())
@@ -88,37 +121,41 @@ export default class Layout extends React.Component {
   fetchRecipes (e) {
     e.preventDefault()
     e.target.blur()
-    this.clearStore()
+    //this.clearStore()
+    this.clearTabs()
     this.props.dispatch(fetchRecipes())
   }
 
   fetchSession (obj) {
-    this.clearStore()
-    this.props.dispatch(fetchSession(obj))
+    this.clearTabs()
+    // this.clearStore()
+    //this.props.dispatch(fetchSession(obj))
     this.props.dispatch(fetchRecipes())
   }
 
   fetchFiddles (e) {
     e.preventDefault()
     e.target.blur()
-    this.clearStore()
+    this.clearTabs()
+    //this.clearStore()
     this.props.dispatch(fetchFiddles())
   }
 
   fetchSongs (e) {
     e.preventDefault()
     e.target.blur()
-    this.clearStore()
+    //this.clearStore()
+    this.clearTabs()
     this.props.dispatch(fetchSongs())
   }
 
   onViewRecipeDetail (recipeToShowID) {
-    this.props.dispatch(clearRecipes())
+    // this.props.dispatch(clearRecipes())
     this.props.dispatch(fetchRecipe(recipeToShowID))
   }
 
   isActive (value) {
-    return value ? 'active' : ''
+    return value === true ? 'active' : ''
   }
 
   render () {
@@ -126,11 +163,11 @@ export default class Layout extends React.Component {
 
     let tab = <LoadingSpinner />
 
-    if (fiddles.fetched) {
+    if (fiddles.isActive) {
       tab = <FiddlesJS data={fiddles.fiddleitems} />
     } else if (fiddles.fetching) {
       tab = <LoadingSpinner />
-    } else if (portfolio.fetched) {
+    } else if (portfolio.isActive) {
       tab = <Portfolio data={portfolio.portfolioitems} />
     } else if (portfolio.error) {
       tab = <ErrorComponent data={portfolio.error.message} />
@@ -140,22 +177,24 @@ export default class Layout extends React.Component {
       tab = <ErrorComponent data={songs.error.message} />
     } else if (songs.fetching) {
       tab = <LoadingSpinner />
-    } else if (songs.fetched) {
+    } else if (songs.isActive) {
       tab = <ViewSongs layout={this} data={songs.songitems} />
     } else if (session.error) {
         tab = <ErrorComponent data={session.error} />
       } else if (session.showForm === true) {
           tab = <LoginForm layout={this} data={session} />
         } else if (!_.isEmpty(session.sess) && session.showForm === false) {
-          if (recipes.fetched) {
-            tab = <ResponsiveGrid data={recipes.recipeitems}
-              layout={this}
-              onViewRecipeDetail={this.onViewRecipeDetail}
-            />
-          } else if (recipe.fetched) {
+          if (recipe.isActive) {
             tab = <RecipeViewDetails
               layout={this}
               data={recipe}
+            />
+          } else if (recipe.error) {
+            tab = <ErrorComponent data={recipe.error} />
+          } else if (recipes.isActive) {
+            tab = <ResponsiveGrid data={recipes.recipeitems}
+              layout={this}
+              onViewRecipeDetail={this.onViewRecipeDetail}
             />
           }
         }
