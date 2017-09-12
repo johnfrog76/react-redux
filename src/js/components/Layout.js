@@ -93,7 +93,6 @@ export default class Layout extends React.Component {
     e.preventDefault()
     e.target.blur()
     this.clearTabs()
-    // this.clearStore()
     this.props.dispatch(fetchPortfolio())
   }
 
@@ -159,7 +158,7 @@ export default class Layout extends React.Component {
   }
 
   render () {
-    const { portfolio, fiddles, recipes, recipe, session, songs} = this.props
+    const {portfolio, fiddles, recipes, recipe, session, songs} = this.props
 
     let tab = <LoadingSpinner />
 

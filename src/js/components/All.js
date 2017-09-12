@@ -40,28 +40,31 @@ class Portfolio extends React.Component {
   render () {
     let data = this.props.data
     return (
-      <div className='portfolio'>
-        {
-          data.map((item, i) => {
-            let headingID = 'heading' + item.id
-            let photos = item.images.map(function (image, n) {
-              let str = 'http://sbtest.com/portfolio/images/' + image.img
+      <div>
+        <h1>Portfolio</h1>
+        <div className='portfolio'>
+          {
+            data.map((item, i) => {
+              let headingID = 'heading' + item.id
+              let photos = item.images.map(function (image, n) {
+                let str = 'http://sbtest.com/portfolio/images/' + image.img
+                return (
+                  <div key={n} className='photo-item'>
+                    <img src={str} />
+                    <figcaption>{image.caption}</figcaption>
+                  </div>
+                )
+              })
+
               return (
-                <div key={n} className='photo-item'>
-                  <img src={str} />
-                  <figcaption>{image.caption}</figcaption>
+                <div key={i}>
+                  <h2 id={headingID}>{item.name}</h2>
+                  <div>{photos}</div>
                 </div>
               )
             })
-
-            return (
-              <div key={i}>
-                <h2 id={headingID}>{item.name}</h2>
-                <div>{photos}</div>
-              </div>
-            )
-          })
-        }
+          }
+        </div>
       </div>
     )
   }
@@ -224,6 +227,7 @@ class RecipeGrid extends React.Component {
 
     return (
       <div>
+        <h1>Recipes</h1>
         <div className='filter-input'>
           <input
             type='text'
@@ -499,7 +503,7 @@ class ViewSongs extends React.Component {
 
     return (
       <div className='songs'>
-        <h5>Songs</h5>
+        <h1>Songs</h1>
         <ul>
           {
             data.map((item, i) => {
@@ -546,50 +550,53 @@ class FiddlesJS extends React.Component {
     let data = this.props.data
 
     return (
-      <div className='fiddle'>
-        {
-          data.map((item, i) => {
-            let colors = ['#3F51B5', '#4CAF50', '#009688', '#00BCD4']
-            let pageIndex = i % colors.length
-            let styleColor = {
-              color: colors[pageIndex]
-            }
-            let backgroundStyle = {
-              backgroundColor: colors[pageIndex],
-              padding: '10px 10px 5px 10px',
-              marginBottom: '2.5rem'
-            }
-            let groupClass = 'group' + i
-            let headingID = 'heading' + item.id
-            let heading = item.fiddles.length === 0 ? null
-                : <h2 id={headingID} style={styleColor}>{item.name}</h2>
-            let fiddles = item.fiddles.map(function (fiddle, n) {
-              let str = '//jsfiddle.net/' + fiddle.fiddle +
-              '/embedded/result,js,html,css/dark/'
-              return (
-                <div key={n} className='fiddle-item' style={backgroundStyle}>
-                  <h3>{fiddle.title}</h3>
-                  <p>{fiddle.description}</p>
-                  <div className='fiddle-wrap'>
-                    <iframe
-                      width='100%'
-                      height='500'
-                      src={str}
-                      scrolling='yes'
-                     />
+      <div>
+        <h1>Fiddles</h1>
+        <div className='fiddle'>
+          {
+            data.map((item, i) => {
+              let colors = ['#3F51B5', '#4CAF50', '#009688', '#00BCD4']
+              let pageIndex = i % colors.length
+              let styleColor = {
+                color: colors[pageIndex]
+              }
+              let backgroundStyle = {
+                backgroundColor: colors[pageIndex],
+                padding: '10px 10px 5px 10px',
+                marginBottom: '2.5rem'
+              }
+              let groupClass = 'group' + i
+              let headingID = 'heading' + item.id
+              let heading = item.fiddles.length === 0 ? null
+                  : <h2 id={headingID} style={styleColor}>{item.name}</h2>
+              let fiddles = item.fiddles.map(function (fiddle, n) {
+                let str = '//jsfiddle.net/' + fiddle.fiddle +
+                '/embedded/result,js,html,css/dark/'
+                return (
+                  <div key={n} className='fiddle-item' style={backgroundStyle}>
+                    <h3>{fiddle.title}</h3>
+                    <p>{fiddle.description}</p>
+                    <div className='fiddle-wrap'>
+                      <iframe
+                        width='100%'
+                        height='500'
+                        src={str}
+                        scrolling='yes'
+                       />
+                    </div>
                   </div>
+                )
+              })
+
+              return (
+                <div key={i} className={groupClass}>
+                  {heading}
+                  <div>{fiddles}</div>
                 </div>
               )
             })
-
-            return (
-              <div key={i} className={groupClass}>
-                {heading}
-                <div>{fiddles}</div>
-              </div>
-            )
-          })
-        }
+          }
+        </div>
       </div>
     )
   }
@@ -597,7 +604,7 @@ class FiddlesJS extends React.Component {
 
 let ResponsiveGrid = Dimensions({
   getHeight: function (element) {
-    return window.innerHeight - 200
+    return window.innerHeight - 300
   },
   getWidth: function (element) {
     var widthOffset = window.innerWidth < 680 ? 0 : 240
