@@ -1,4 +1,6 @@
 
+// media queries
+
 body {
   background-color: #333;
   color: #fff;
@@ -13,6 +15,13 @@ body {
 .error {
   color: #b42d23;
   font-size: 16px;
+}
+
+
+h1 {
+    font-size: 6.6rem;
+    font-family: Lobster;
+    color: $h1Color;
 }
 
 p {
@@ -47,7 +56,7 @@ input {
 }
 
 h2 {
-  color: #31798F;
+  color: #a9cae6;
   margin: 1em 0 0.75em 0;
 }
 

@@ -1,4 +1,36 @@
 
+// media queries
+$mobile: 0;
+$small: 48rem;
+$medium: 62rem;
+$large: 75rem;
+$extra: 101.3rem;
+$colorActiveDot: #8bc34a;
+$colorDot: rgba(#efefef, 0.3);
+$headerTextColor: rgba(#efefef, 0.5);
+
+//navigation
+$navbarBackground: #ad1457;
+$navActiveColor: rgba(#880e4f, 0.6);
+$navHoverColor: rgba(#880e4f, 0.3);
+$navDropdownActiveBackground: #8bc34a;
+$navDropdownActiveBorder: rgba(#8bc34a, 0.6);
+$navDropdownMenuBackground: rgba(#efefef, 0.3);
+$navLinkColor: #fff;
+$loadingBackground: darken(#8bc34a, 10%); // $accordionBodyBackground: rgba(#fff, 0.25);
+
+// colors
+$h1Color: #1E88E5;
+$linkColor: #ccc;
+$linkActiveColor: darken($linkColor, 5%);
+$btnGroupColor: $headerTextColor;
+$bodyBackgroundColor: #212121;
+$bodyColor: #eee;
+$bioTitleColor: #616161;
+$songListPlayBtn: #ff80ab;
+$songListItemBorderColor: #424242;
+$footerBackgroundColor: darken($songListItemBorderColor, 8%);
+
 
 @import "override";
 @import "site";
