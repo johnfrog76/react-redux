@@ -1,218 +1,197 @@
-
-// media queries
-
+// global styles
 body {
-  background-color: #333;
-  color: #fff;
-  font: 14px/1.5em "Arial", sans-serif;
-}
-
-.photo-item img {
-  width: 100%;
-  height: auto;
-}
-
-.error {
-  color: #b42d23;
-  font-size: 16px;
-}
-
-
-h1 {
-    font-size: 6.6rem;
-    font-family: Lobster;
-    color: $h1Color;
-}
-
-p {
-  font-size: 1.2em;
-  line-height: 1.5em;
+  background-color: $bodyBackgroundColor;
+  color: $bodyColor;
+  font-size: 1.3rem;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .clear {
-    clear: both;
-}
-
-.wrapper-about {
-    position: relative;
-    height: 250px;
-    .about-me {
-        position: absolute;
-        top: 20px;
-        left: 0;
-        background: #ccc url('/images/me.jpg') no-repeat;
-        background-size: cover;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        margin-bottom: 1rem;
-        &.family {
-            width: 100px;
-            height: 100px;
-            background-image: url('/images/fam.jpg');
-            top: 150px;
-            left: 120px;
-        }
-    }
-}
-
-p.me.intro {
-    margin-top: 80px;
-    @media (min-width: 1200px) {
-        margin-left: -8vw;
-        max-width: calc(100% - 8vw);
-    }
-}
-
-.portfolio {
-  input, textarea, p {
-    color: #3A90AB !important;
-  }
-}
-
-form.MessageForm {
-  input {
-    margin-bottom: 10px;
-  }
-  width: 300px;
-  margin: 0 auto;
-}
-
-input {
-  &[type="text"], &[type="password"] {
-    color: #31758d;
-  }
-}
-
-.form-control:focus {
-  outline: 0;
-  box-shadow: none;
-  border: 1px solid #ccc;
-}
-
-h2 {
-  color: #a9cae6;
-  margin: 1em 0 0.75em 0;
-}
-
-footer > div {
-  font-size: .8em;
-  border-top: 1px solid #31798F;
-}
-
-.btn-primary {
-  color: #ccc !important;
-  background-color: #333333 !important;
-  border-color: #ccc !important;
-}
-
-button.btn.btn-primary:focus {
-  outline: none;
-}
-
-footer > div > a {
-  color: #fff !important;
-}
-
-/*header#top {
-    margin: 3em 0;
-    clear: both;
-}*/
-
-header#top > div {
-  margin: 3em 0;
-  position: relative;
-  border-top: 1px solid #31798F;
-  > span {
-    color: rgba(255, 255, 255, 0.7);
-    background-color: #333;
-    position: relative;
-    top: -10px;
-    padding: 0px 15px 0 0;
-  }
-}
-
-footer > div {
-  margin: 5em 0;
-  color: rgba(255, 255, 255, 0.7);
-  > a {
-    color: rgba(255, 255, 255, 0.7) !important;
-  }
-}
-
-div#loading {
-  color: #4CAF50;
-  text-align: center;
-  font-size: 32px;
-}
-
-#content {
   clear: both;
-}
-
-figcaption {
-  text-align: right;
-  font-weight: 100;
-  margin: 5px;
-  font-size: .8em;
-  color: #cfcfcf;
-}
-
-nav a {
-  &:link, &:visited, &:hover {
-    color: #31758d;
-  }
-  &.active {
-    color: #ccc;
-  }
 }
 
 iframe {
   border: none;
 }
 
+div#loading {
+  color: $loadingBackground;
+  text-align: center;
+  font-size: 3.2rem;
+}
+
+.error {
+  color: $errorBackground;
+  font-size: 3.2rem;
+  text-align: center;
+}
+
+// type
+h1 {
+  font-size: 4rem;
+  font-family: $displayType;
+  color: $h1Color;
+  font-weight: $displayWeight;
+}
+
+h2 {
+  color: $h2Color;
+  font-family: $displayType;
+  font-size: 2.7rem;
+  margin: 1em 0 0.75em 0;
+  font-weight: $displayWeight;
+}
+
+p {
+  font-size: 1.25rem;
+  line-height: 1.5em;
+}
+
+a,
+a:link,
+a:visited {
+  color: $linkColor;
+}
+
+a:focus,
+a:hover {
+  color: $linkActiveColor;
+}
+
+.portfolio {
+  .photo-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.about-us-wrapper {
+  p.me.intro {
+    margin-top: 80px;
+
+    @media (min-width: 1200px) {
+      margin-left: -8vw;
+      max-width: calc(100% - 8vw);
+    }
+  }
+  .social {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 3.3rem;
+    a {
+      color: $linkSocialColor;
+    }
+  }
+  .photos-me-wrapper {
+    position: relative;
+    height: 250px;
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;
+
+    .about-me {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      background: #ccc url('/images/me.jpg') no-repeat;
+      background-size: cover;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+
+      &.family {
+        width: 100px;
+        height: 100px;
+        background-image: url('/images/fam.jpg');
+        top: 150px;
+        left: 120px;
+      }
+    }
+  }
+}
+
+.portfolio {
+  figcaption {
+    text-align: right;
+    font-weight: 100;
+    margin: 5px;
+    font-size: .8em;
+    color: #cfcfcf;
+  }
+
+  input, textarea, p {
+    color: #3A90AB !important;
+  }
+}
+
 .songs {
   .btn {
+    color: $songListPlayBtn;
+    text-decoration: none;
     background: transparent;
-    color: #2780e3;
+    position: absolute;
+    right: 0.3rem;
+    top: 1.1rem;
+
+    &.fa-pause {
+      color: $songListPauseBtn;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+      box-shadow: none;
+    }
   }
   ul {
     margin: 4rem 0 0 0;
     padding: 0;
+
     li {
       &:first-of-type {
-        border-top: 1px solid #444;
+        border-top: 1px solid $songListItemBorderColor;
+        margin-top: 0;
       }
       position: relative;
       border-bottom: 1px solid #444;
       list-style: none;
       padding: 1rem 0;
+
       > .song-title {
         font-size: 1.2rem;
-        color: #ccc;
+        color: #6e6e6e;
         padding: 0 0 0 5px;
       }
     }
-  }
-  .btn {
-    color: #2780e3;
-    text-decoration: none;
-    position: absolute;
-    right: 0.3rem;
-    top: 0.8rem;
-    &.fa-pause {
-      color: #03a9f4;
+    @media (min-width: $small) {
+      columns: 2;
+      -moz-columns: 2;
+
+      li {
+        padding: 1rem;
+        background-color: $songListItemBorderColor;
+        margin: 1rem 0;
+        border: 0;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+      }
+    }
+
+    .progress {
+      height: 4px;
+      width: 22vw;
+      max-width: 117px;
+      display: inline-block;
+      position: absolute;
+      right: 58px;
+      top: 17px;
+      background-color: lighten($bodyBackgroundColor, 3%);
+
+      &-bar {
+        background-color: $progressActiveColor;
+      }
     }
   }
-}
-
-.progress {
-  height: 4px;
-  width: 22vw;
-  max-width: 117px;
-  display: inline-block;
-  position: absolute;
-  right: 58px;
-  top: 17px;
-  background-color: #292929;
 }

@@ -53,11 +53,11 @@ class AboutUs extends React.Component {
       'http://twitter.com/johnfrog76/'
     ]
     return (
-      <div>
+      <div className='about-us-wrapper'>
         <h1>About Me</h1>
         <div class='row'>
           <div class='col-sm-3'>
-            <div className='wrapper-about'>
+            <div className='photos-me-wrapper'>
               <div className='about-me' />
               <div className='about-me family' />
             </div>
@@ -66,20 +66,22 @@ class AboutUs extends React.Component {
           <div class='col-sm-8'>
             <p className='me intro'>{me}
               <br />
-              <a href={links[0]}
-                target='_blank'
-                style={iconStyle}>
-                <i className='fa fa-github' />
-              </a>
-              <a href={links[1]}
-                target='_blank'
-                style={iconStyle}>
-                <i className='fa fa-linkedin-square' />
-              </a>
-              <a href={links[2]}
-                target='_blank'>
-                <i className='fa fa-twitter' />
-              </a>
+              <span className='social'>
+                <a href={links[0]}
+                  target='_blank'
+                  style={iconStyle}>
+                  <i className='fa fa-github' />
+                </a>
+                <a href={links[1]}
+                  target='_blank'
+                  style={iconStyle}>
+                  <i className='fa fa-linkedin-square' />
+                </a>
+                <a href={links[2]}
+                  target='_blank'>
+                  <i className='fa fa-twitter' />
+                </a>
+              </span>
             </p>
           </div>
         </div>
@@ -610,7 +612,7 @@ class FiddlesJS extends React.Component {
         <div className='fiddle'>
           {
             data.map((item, i) => {
-              let colors = ['#3F51B5', '#4CAF50', '#009688', '#00BCD4']
+              let colors = ['#AFB42B', '#4CAF50', '#009688', '#00BCD4']
               let pageIndex = i % colors.length
               let styleColor = {
                 color: colors[pageIndex]

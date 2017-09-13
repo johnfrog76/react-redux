@@ -1,23 +1,77 @@
 
 /* bootstrap style overrides */
+.navbar-inverse {
+    border-radius: 0;
+    border: none;
+    background-color: $navbarBackground;
 
-.navbar-toggle {
-  float: left;
-  border: 0;
-  margin-left: 5px;
-  margin-right: auto;
-  margin-top: 9px;
+    .navbar-collapse {
+        border-color: $bodyBackgroundColor;
+        box-shadow: none;
+    }
+
+
+    .navbar-brand {
+        color: #fff;
+    }
+
+    .navbar-toggle {
+        float: left;
+        border: 0;
+        margin-left: 5px;
+        margin-right: auto;
+        margin-top: 9px;
+
+        &:hover {
+            background-color: transparent;
+            opacity: 0.9;
+        }
+
+        &:focus {
+            background-color: transparent;
+        }
+    }
+
+    .nav.navbar-nav {
+        & > li {
+            & > a {
+                color: rgba($navLinkColor, 0.8);
+            }
+
+            & > a:focus,
+            & > a:hover {
+                background-color: $navHoverColor;
+                color: $navLinkColor;
+            }
+        }
+
+        & > .active {
+            > a {
+                background-color: $navActiveColor;
+                color: $navLinkColor;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        background-color: $navDropdownMenuBackground;
+        border: none;
+        border-radius: 0;
+
+        & > li {
+            & > a:focus,
+            & > a:hover {
+                //background-color: $colorDot;
+                color: $navLinkColor;
+            }
+
+            &.active {
+                a {
+                    background-color: $navDropdownActiveBackground;
+                    border-left: 4px solid $navDropdownActiveBorder;
+                    color: $navLinkColor;
+                }
+            }
+        }
+    }
 }
-
-.navbar-inverse .navbar-toggle {
-  &:hover, &:focus {
-    background-color: transparent;
-  }
-}
-
-.navbar-brand {
-  float: left;
-  padding: 14.5px 15px 14.5px 0;
-}
-
-/* end bootstrap style overrides */

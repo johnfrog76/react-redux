@@ -1,0 +1,38 @@
+// media queries
+$mobile: 0;
+$small: 48rem;
+$medium: 62rem;
+$large: 75rem;
+$extra: 101.3rem;
+
+//type
+$displayType: 'Merriweather Sans', sans-serif;
+$displayWeight: 300; //300 || 700 lighter
+$h1Color: #9575CD; // 300
+$h2Color: #7E57C2; //400
+$linkColor: #1976D2;
+$linkActiveColor: lighten($linkColor, 5%);
+$linkSocialColor: #424242;
+
+//navigation
+$navbarBackground: #5E35B1; // 600
+$navActiveColor: rgba(#4527A0, 0.8);
+$navHoverColor: rgba(#4527A0, 0.6);
+$navDropdownActiveBackground: #311B92;  // 900
+$navDropdownActiveBorder: rgba($navDropdownActiveBackground, 0.6);
+$navDropdownMenuBackground: rgba(#efefef, 0.3);
+$navLinkColor: #fff;
+
+//messaging
+$loadingBackground: #76FF03;
+$errorBackground: #DD2C00;
+
+//global
+$bodyColor: #eee;
+$bodyBackgroundColor: #212121;
+
+//songs
+$songListPlayBtn: $h1Color;
+$songListPauseBtn: lighten($h1Color, 10%);
+$songListItemBorderColor: #393939;
+$progressActiveColor: $h1Color;
