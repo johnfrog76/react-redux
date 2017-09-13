@@ -33,6 +33,58 @@ class ErrorComponent extends React.Component {
   }
 }
 
+class AboutUs extends React.Component {
+  constructor () {
+    super()
+  }
+  render () {
+    let me = 'Hello - I\'m a UI/UX Developer in the Seattle and like ' +
+    'to build web applications using JavaScript, CSS and HTML5. In addition to ' +
+    'UI/UX, other interests include spending time with family and ' +
+    'walking my favorite dog, Rosie!'
+    let project = 'This project is a sandbox using data from other projects to explore ' +
+    'code and UX patterns with React and Redux frameworks.'
+    let iconStyle = {
+      marginRight: '1rem'
+    }
+    return (
+      <div>
+        <h1>About Me</h1>
+        <div class='row'>
+          <div class='col-sm-3'>
+            <div className='wrapper-about'>
+              <div className='about-me' />
+              <div className='about-me family' />
+            </div>
+          </div>
+          <div class='col-sm-1' />
+          <div class='col-sm-8'>
+            <p className='me intro'>{me}
+              <br />
+              <a href='http://github.com/johnfrog76/'
+                target='_blank'
+                style={iconStyle}>
+                <i className='fa fa-github' />
+              </a>
+              <a href='http://www.linkedin.com/pub/john-webster/16/787/995'
+                target='_blank'
+                style={iconStyle}>
+                <i className='fa fa-linkedin-square' />
+              </a>
+              <a href='http://twitter.com/johnfrog76/'
+                target='_blank'>
+                <i className='fa fa-twitter' />
+              </a>
+            </p>
+          </div>
+        </div>
+        <h2>Project</h2>
+        <p>{project}</p>
+      </div>
+    )
+  }
+}
+
 class Portfolio extends React.Component {
   constructor () {
     super()
@@ -615,6 +667,7 @@ let ResponsiveGrid = Dimensions({
 export {
   LoadingSpinner,
   Portfolio,
+  AboutUs,
   FiddlesJS,
   LoginForm,
   RecipeTable,

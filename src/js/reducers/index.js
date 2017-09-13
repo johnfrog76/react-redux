@@ -5,6 +5,7 @@ import recipes from './recipeReducer'
 import recipe from './recipeSingleReducer'
 import session from './recipeSessionReducer'
 import songs from './songReducer'
+import about from './aboutReducer'
 
 export default combineReducers({
   portfolio,
@@ -12,5 +13,6 @@ export default combineReducers({
   recipes,
   recipe,
   session,
-  songs
+  songs,
+  about
 })

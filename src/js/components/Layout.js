@@ -15,22 +15,31 @@ import {
   clearPortfolio,
   inactivePortfolio
 } from '../actions/portfolioActions'
+
 import {
   fetchFiddles,
   displayFiddles,
   clearFiddles,
   inactiveFiddles
 } from '../actions/fiddleActions'
+
+import {
+  displayAbout,
+  inactiveAbout
+} from '../actions/aboutActions'
+
 import {
   fetchSession,
   showLoginForm,
   clearSession
 } from '../actions/recipeSessionActions'
+
 import {
   fetchRecipe,
   clearRecipe,
   inactiveRecipe
 } from '../actions/recipeItemActions'
+
 import {
   fetchRecipes,
   displayRecipes,
@@ -49,6 +58,7 @@ import {
 
 import {
   LoadingSpinner,
+  AboutUs,
   Portfolio,
   FiddlesJS,
   LoginForm,
@@ -66,14 +76,15 @@ import {
     session: store.session,
     recipes: store.recipes,
     recipe: store.recipe,
-    songs: store.songs
+    songs: store.songs,
+    about: store.about
   }
 })
 
 export default class Layout extends React.Component {
   componentWillMount () {
     // fetch session here
-    this.props.dispatch(fetchPortfolio())
+    this.props.dispatch(displayAbout())
     this.props.dispatch(fetchSession({user: '1', pass: 'a'}))
   }
 
@@ -103,6 +114,7 @@ export default class Layout extends React.Component {
   }
 
   clearTabs () {
+    this.props.dispatch(inactiveAbout())
     this.props.dispatch(inactiveFiddles())
     this.props.dispatch(inactivePortfolio())
     this.props.dispatch(inactiveRecipes())
@@ -144,6 +156,13 @@ export default class Layout extends React.Component {
 
   pauseAllSongs () {
     this.props.dispatch(pauseAllSongs())
+  }
+
+  fetchAbout (e) {
+    e.preventDefault()
+    e.target.blur()
+    this.clearTabs()
+    this.props.dispatch(displayAbout())
   }
 
   fetchRecipes (e) {
@@ -195,7 +214,7 @@ export default class Layout extends React.Component {
   }
 
   render () {
-    const {portfolio, fiddles, recipes, recipe, session, songs} = this.props
+    const {portfolio, fiddles, recipes, recipe, session, songs, about} = this.props
 
     let tab = <LoadingSpinner />
 
@@ -203,6 +222,8 @@ export default class Layout extends React.Component {
       tab = <FiddlesJS data={fiddles.fiddleitems} />
     } else if (fiddles.fetching) {
       tab = <LoadingSpinner />
+    } else if (about.isActive) {
+      tab = <AboutUs />
     } else if (portfolio.isActive) {
       tab = <Portfolio data={portfolio.portfolioitems} />
     } else if (portfolio.error) {
@@ -242,7 +263,7 @@ export default class Layout extends React.Component {
           <Navbar.Brand>
             <a
               href='#'
-              onClick={this.fetchPortfolio.bind(this)}
+              onClick={this.fetchAbout.bind(this)}
             >JW
             </a>
           </Navbar.Brand>
@@ -251,27 +272,34 @@ export default class Layout extends React.Component {
           <Nav>
             <NavItem
               eventKey={1}
+              className={this.isActive(this.props.about.isActive)}
+              onClick={this.fetchAbout.bind(this)}
+              href='#'
+            >About
+            </NavItem>
+            <NavItem
+              eventKey={2}
               className={this.isActive(this.props.portfolio.isActive)}
               onClick={this.fetchPortfolio.bind(this)}
               href='#'
             >Portfolio
             </NavItem>
             <NavItem
-              eventKey={2}
+              eventKey={3}
               className={this.isActive(this.props.fiddles.isActive)}
               onClick={this.fetchFiddles.bind(this)}
               href='#'
             >Fiddles
             </NavItem>
             <NavItem
-              eventKey={3}
+              eventKey={4}
               className={this.isActive(this.props.recipes.isActive)}
               onClick={this.showLoginForm.bind(this)}
               href='#'
             >Recipes
             </NavItem>
             <NavItem
-              eventKey={4}
+              eventKey={5}
               className={this.isActive(this.props.songs.isActive)}
               onClick={this.fetchSongs.bind(this)}
               href='#'

@@ -29,6 +29,40 @@ p {
   line-height: 1.5em;
 }
 
+.clear {
+    clear: both;
+}
+
+.wrapper-about {
+    position: relative;
+    height: 250px;
+    .about-me {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        background: #ccc;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        &.family {
+            width: 100px;
+            height: 100px;
+            background: #fff;
+            top: 150px;
+            left: 120px;
+        }
+    }
+}
+
+p.me.intro {
+    margin-top: 80px;
+    @media (min-width: 1200px) {
+        margin-left: -8vw;
+        max-width: calc(100% - 8vw);
+    }
+}
+
 .portfolio {
   input, textarea, p {
     color: #3A90AB !important;
