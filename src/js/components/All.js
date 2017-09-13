@@ -39,14 +39,19 @@ class AboutUs extends React.Component {
   }
   render () {
     let me = 'Hello - I\'m a UI/UX Developer in the Seattle and like ' +
-    'to build web applications using JavaScript, CSS and HTML5. In addition to ' +
-    'UI/UX, other interests include spending time with family and ' +
+    'to build web applications using JavaScript, CSS and HTML5. ' +
+    'Other interests include spending time with family and ' +
     'walking my favorite dog, Rosie!'
     let project = 'This project is a sandbox using data from other projects to explore ' +
     'code and UX patterns with React and Redux frameworks.'
     let iconStyle = {
       marginRight: '1rem'
     }
+    let links = [
+      'http://github.com/johnfrog76/',
+      'http://www.linkedin.com/pub/john-webster/16/787/995',
+      'http://twitter.com/johnfrog76/'
+    ]
     return (
       <div>
         <h1>About Me</h1>
@@ -61,17 +66,17 @@ class AboutUs extends React.Component {
           <div class='col-sm-8'>
             <p className='me intro'>{me}
               <br />
-              <a href='http://github.com/johnfrog76/'
+              <a href={links[0]}
                 target='_blank'
                 style={iconStyle}>
                 <i className='fa fa-github' />
               </a>
-              <a href='http://www.linkedin.com/pub/john-webster/16/787/995'
+              <a href={links[1]}
                 target='_blank'
                 style={iconStyle}>
                 <i className='fa fa-linkedin-square' />
               </a>
-              <a href='http://twitter.com/johnfrog76/'
+              <a href={links[2]}
                 target='_blank'>
                 <i className='fa fa-twitter' />
               </a>
@@ -150,7 +155,7 @@ class LoginForm extends React.Component {
           autoComplete='off'
           value={this.user}
           onChange={this.handleNameChange}
-              />
+        />
         <input
           type='password'
           className='form-control'
@@ -159,13 +164,11 @@ class LoginForm extends React.Component {
           autoComplete='off'
           value={this.pass}
           onChange={this.handlePassChange}
-              />
+        />
         <button
           type='submit'
-          className='btn btn-primary'
-              >
-                Log In
-              </button>
+          className='btn btn-primary'>Log In
+        </button>
       </form>
     )
   }
