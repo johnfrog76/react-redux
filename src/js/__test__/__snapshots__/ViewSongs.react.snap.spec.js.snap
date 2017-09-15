@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Snapshot of ViewSongs component 1`] = `
+<div
+  className="songs"
+>
+  <h1>
+    Songs
+  </h1>
+  <ul>
+    <li>
+      <audio
+        id="audio13"
+        preload="auto"
+      >
+        <source
+          src="http://katie.sbtest.com/upload/there_will_never_be_another_you.mp3"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+      <div
+        className="song-title"
+      >
+        There Will Never Be Another You
+      </div>
+      <div
+        className="progress"
+        id="progress13"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={0}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "0%",
+            }
+          }
+        />
+      </div>
+      <button
+        className="btn btn-xs fa fa-play"
+        id="play0"
+        onClick={[Function]}
+      />
+      <button
+        className="hidden"
+        id="pause0"
+        onClick={[Function]}
+      />
+    </li>
+  </ul>
+</div>
+`;

@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "getting aquainted wtih Redux to scale React",
   "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnfrog76/react-redux"
+  },
   "dependencies": {
     "axios": "^0.16.1",
     "babel-core": "^6.18.2",
@@ -31,13 +35,21 @@
     "webpack-dev-server": "^2.4.5"
   },
   "devDependencies": {
+    "babel-jest": "^21.0.2",
+    "enzyme": "^2.9.1",
+    "jest": "^21.1.0",
     "node-sass": "^4.5.3",
+    "react-test-renderer": "^15.6.1",
+    "regenerator-runtime": "^0.11.0",
     "sass-loader": "^6.0.6"
   },
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
     "build": "webpack",
-    "production": "webpack -p"
+    "production": "webpack -p",
+    "test": "jest",
+    "test-watch": "jest --verbose --watch --colors",
+    "test-coverage": "jest --coverage --colors"
   },
   "author": "jwebster",
   "license": "ISC"

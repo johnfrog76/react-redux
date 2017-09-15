@@ -66,8 +66,12 @@ import {
   ResponsiveGrid,
   RecipeViewDetails,
   ErrorComponent,
-  ViewSongs
+  // ViewSongs
 } from '../components/All'
+
+import {
+  ViewSongs
+} from '../components/ViewSongs.js'
 
 @connect((store) => {
   return {
