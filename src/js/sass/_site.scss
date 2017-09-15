@@ -67,7 +67,11 @@ a:hover {
 
 .about-us-wrapper {
   p.me.intro {
-    margin-top: 80px;
+    margin-top: 3rem;
+
+    @media (min-width: 768px) {
+      margin-top: 8rem;
+    }
 
     @media (min-width: 1200px) {
       margin-left: -8vw;
