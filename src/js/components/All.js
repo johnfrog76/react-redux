@@ -40,8 +40,7 @@ class AboutUs extends React.Component {
   render () {
     let me = 'Hello - I\'m a UI/UX Developer in the Seattle and like ' +
     'to build web applications using JavaScript, CSS and HTML5. ' +
-    'Other interests include spending time with family and ' +
-    'walking my favorite dog, Rosie!'
+    'If I\'m not doing that, you will find me walking my favorite dog, Rosie!'
     let project = 'This project is a sandbox using data from other projects to explore ' +
     'code and UX patterns with React and Redux frameworks.'
     let iconStyle = {
