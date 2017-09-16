@@ -1,6 +1,5 @@
 
 import React from 'react'
-//import {ProgressBar} from 'react-bootstrap'
 import {Table, Column, Cell} from 'fixed-data-table-2'
 import {TextCell, ActionCell, SortHeaderCell} from '../components/CellHelpers'
 const Dimensions = require('react-dimensions')
@@ -86,43 +85,6 @@ class AboutUs extends React.Component {
         </div>
         <h2>Project</h2>
         <p>{project}</p>
-      </div>
-    )
-  }
-}
-
-class Portfolio extends React.Component {
-  constructor () {
-    super()
-  }
-  render () {
-    let data = this.props.data
-    return (
-      <div>
-        <h1>Portfolio</h1>
-        <div className='portfolio'>
-          {
-            data.map((item, i) => {
-              let headingID = 'heading' + item.id
-              let photos = item.images.map(function (image, n) {
-                let str = 'http://sbtest.com/portfolio/images/' + image.img
-                return (
-                  <div key={n} className='photo-item'>
-                    <img src={str} />
-                    <figcaption>{image.caption}</figcaption>
-                  </div>
-                )
-              })
-
-              return (
-                <div key={i}>
-                  <h2 id={headingID}>{item.name}</h2>
-                  <div>{photos}</div>
-                </div>
-              )
-            })
-          }
-        </div>
       </div>
     )
   }
@@ -471,66 +433,6 @@ class RecipeViewDetails extends React.Component {
   }
 }
 
-class FiddlesJS extends React.Component {
-  constructor () {
-    super()
-  }
-  render () {
-    let data = this.props.data
-
-    return (
-      <div>
-        <h1>Fiddles</h1>
-        <div className='fiddle'>
-          {
-            data.map((item, i) => {
-              let colors = ['#AFB42B', '#4CAF50', '#009688', '#00BCD4']
-              let pageIndex = i % colors.length
-              let styleColor = {
-                color: colors[pageIndex]
-              }
-              let backgroundStyle = {
-                backgroundColor: colors[pageIndex],
-                padding: '10px 10px 5px 10px',
-                marginBottom: '2.5rem'
-              }
-              let groupClass = 'group' + i
-              let headingID = 'heading' + item.id
-              let heading = item.fiddles.length === 0 ? null
-                  : <h2 id={headingID} style={styleColor}>{item.name}</h2>
-              let fiddles = item.fiddles.map(function (fiddle, n) {
-                let str = '//jsfiddle.net/' + fiddle.fiddle +
-                '/embedded/result,js,html,css/dark/'
-                return (
-                  <div key={n} className='fiddle-item' style={backgroundStyle}>
-                    <h3>{fiddle.title}</h3>
-                    <p>{fiddle.description}</p>
-                    <div className='fiddle-wrap'>
-                      <iframe
-                        width='100%'
-                        height='500'
-                        src={str}
-                        scrolling='yes'
-                       />
-                    </div>
-                  </div>
-                )
-              })
-
-              return (
-                <div key={i} className={groupClass}>
-                  {heading}
-                  <div>{fiddles}</div>
-                </div>
-              )
-            })
-          }
-        </div>
-      </div>
-    )
-  }
-}
-
 let ResponsiveGrid = Dimensions({
   getHeight: function (element) {
     return window.innerHeight - 300
@@ -543,13 +445,10 @@ let ResponsiveGrid = Dimensions({
 
 export {
   LoadingSpinner,
-  Portfolio,
   AboutUs,
-  FiddlesJS,
   LoginForm,
   RecipeTable,
   RecipeViewDetails,
   ErrorComponent,
-  //ViewSongs,
   ResponsiveGrid
 }

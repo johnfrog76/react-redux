@@ -48,7 +48,7 @@
     "build": "webpack",
     "production": "webpack -p",
     "test": "jest",
-    "test-watch": "jest --verbose --watch --colors",
+    "test-watch": "jest --verbose --watchAll --colors",
     "test-coverage": "jest --coverage --colors"
   },
   "author": "jwebster",

@@ -13,10 +13,13 @@ npm run build
 
 #### Testing
 npm run [scriptname]
+
+> note: only watches modified files. Do not expect to modify, see error, and
+> revert to see green.
 <pre>
 "scripts": {
   "test": "jest",
-  "test-watch": "jest --verbose --watch --colors",
+  "test-watch": "jest --verbose --watchAll --colors",
   "test-coverage": "jest --coverage --colors"
 }
 </pre>

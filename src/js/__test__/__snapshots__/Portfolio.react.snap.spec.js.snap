@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Snapshot of Portfolio component 1`] = `
+<div>
+  <h1>
+    Portfolio
+  </h1>
+  <div
+    className="portfolio"
+  >
+    <div>
+      <h2
+        id="heading1"
+      >
+        typography
+      </h2>
+      <div>
+        <div
+          className="photo-item"
+        >
+          <img
+            src="http://sbtest.com/portfolio/images/cautiousReckless.png"
+          />
+          <figcaption>
+            Cautious / Reckless typography
+          </figcaption>
+        </div>
+        <div
+          className="photo-item"
+        >
+          <img
+            src="http://sbtest.com/portfolio/images/wtoFoot.png"
+          />
+          <figcaption>
+            WTO type composition
+          </figcaption>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

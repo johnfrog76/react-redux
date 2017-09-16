@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Snapshot of FiddlesJS component 1`] = `
+<div>
+  <h1>
+    Fiddles
+  </h1>
+  <div
+    className="fiddle"
+  >
+    <div
+      className="group0"
+    >
+      <h2
+        id="heading1"
+        style={
+          Object {
+            "color": "#AFB42B",
+          }
+        }
+      >
+        Data Structures
+      </h2>
+      <div>
+        <div
+          className="fiddle-item"
+          style={
+            Object {
+              "backgroundColor": "#AFB42B",
+              "marginBottom": "2.5rem",
+              "padding": "10px 10px 5px 10px",
+            }
+          }
+        >
+          <h3>
+            Singly Linked List
+          </h3>
+          <p>
+            Add, List and Remove items from linked list.
+          </p>
+          <div
+            className="fiddle-wrap"
+          >
+            <iframe
+              height="500"
+              scrolling="yes"
+              src="//jsfiddle.net/3e1753dw/embedded/result,js,html,css/dark/"
+              width="100%"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

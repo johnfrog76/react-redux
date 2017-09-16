@@ -59,19 +59,24 @@ import {
 import {
   LoadingSpinner,
   AboutUs,
-  Portfolio,
-  FiddlesJS,
   LoginForm,
   RecipeTable,
   ResponsiveGrid,
   RecipeViewDetails,
   ErrorComponent,
-  // ViewSongs
 } from '../components/All'
 
 import {
+  FiddlesJS
+} from '../components/Fiddles'
+
+import {
+  Portfolio
+} from '../components/Portfolio'
+
+import {
   ViewSongs
-} from '../components/ViewSongs.js'
+} from '../components/ViewSongs'
 
 @connect((store) => {
   return {
