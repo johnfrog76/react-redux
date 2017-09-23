@@ -2,7 +2,7 @@
 import React from 'react'
 import {Cell} from 'fixed-data-table-2'
 
-// TextCell is a helper for fixed-data-table-2
+// helper for fixed-data-table-2
 class SortHeaderCell extends React.Component {
   constructor (props) {
     super(props)
@@ -44,6 +44,53 @@ class SortHeaderCell extends React.Component {
   }
 }
 
+// RatingCell is a helper for fixed-data-table-2
+class RatingCell extends React.Component {
+  constructor () {
+    super()
+  }
+  render () {
+    const {rowIndex, field, data, ...props} = this.props
+    let rating = data[rowIndex].rating
+    let ret = ''
+    switch (rating) {
+      case 1: {
+        ret = <div className='rating'>
+          <em className='fa fa-star' />
+        </div>
+        break
+      }
+      case 2: {
+        ret = <div className='rating'>
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+        </div>
+        break
+      }
+      case 3: {
+        ret = <div className='rating'>
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+        </div>
+        break
+      }
+      case 4: {
+        ret = <div className='rating'>
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+          <em className='fa fa-star' />
+        </div>
+        break
+      }
+    }
+    return (
+      <Cell {...props}>{ret}</Cell>
+    )
+  }
+}
+
 // TextCell is a helper for fixed-data-table-2
 class TextCell extends React.Component {
   constructor () {
@@ -78,5 +125,6 @@ class ActionCell extends React.Component {
 export {
   TextCell,
   ActionCell,
-  SortHeaderCell
+  SortHeaderCell,
+  RatingCell
 }

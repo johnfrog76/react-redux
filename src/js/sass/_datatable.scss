@@ -8,7 +8,14 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
- 
+
+.rating {
+  color: $ratingColor;
+  @media (max-width: 575px) {
+    font-size: .75em;
+  }
+}
+
  .main-content-area .public_fixedDataTable_main {
     background-color: #fff;
 

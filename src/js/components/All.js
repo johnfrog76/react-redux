@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {Table, Column, Cell} from 'fixed-data-table-2'
-import {TextCell, ActionCell, SortHeaderCell} from '../components/CellHelpers'
+import {TextCell, ActionCell, SortHeaderCell, RatingCell} from '../components/CellHelpers'
 const Dimensions = require('react-dimensions')
 
 class LoadingSpinner extends React.Component {
@@ -26,7 +26,7 @@ class ErrorComponent extends React.Component {
 
     return (
       <div class='error'>
-        <i class='fa fa-warning' /> {data}
+        <i className='fa fa-warning' /> {data}
       </div>
     )
   }
@@ -40,8 +40,8 @@ class AboutUs extends React.Component {
     let me = 'Hello - I\'m a UI/UX Developer in the Seattle and like ' +
     'to build web applications using JavaScript, CSS and HTML5. ' +
     'If I\'m not doing that, you will find me walking my favorite dog, Rosie!'
-    let project = 'This project is a sandbox using data from other projects to explore ' +
-    'code and UX patterns with React and Redux frameworks.'
+    let project = 'This site is a sandbox built for exploring ' +
+    'patterns with React and Redux.'
     let iconStyle = {
       marginRight: '1rem'
     }
@@ -52,8 +52,10 @@ class AboutUs extends React.Component {
     ]
     return (
       <div className='about-us-wrapper'>
-        <h1>About Me</h1>
-        <div class='row'>
+        <h1>About</h1>
+        <p>{project}</p>
+        <h2>Me</h2>
+        <div className='row'>
           <div class='col-sm-3'>
             <div className='photos-me-wrapper'>
               <div className='about-me' />
@@ -83,8 +85,6 @@ class AboutUs extends React.Component {
             </p>
           </div>
         </div>
-        <h2>Project</h2>
-        <p>{project}</p>
       </div>
     )
   }
@@ -283,10 +283,9 @@ class RecipeGrid extends React.Component {
                 Rating
               </SortHeaderCell>
             }
-            cell={<TextCell data={filteredDataList} />}
-            flexGrow={0.5}
-            width={5}
-            align='center'
+            cell={<RatingCell data={filteredDataList} />}
+            flexGrow={0.75}
+            width={10}
           />
           <Column
             columnKey='r_name'
@@ -300,20 +299,6 @@ class RecipeGrid extends React.Component {
             cell={<TextCell data={filteredDataList} />}
             flexGrow={2}
             width={40}
-          />
-          <Column
-            columnKey='id'
-            header={
-              <SortHeaderCell
-                onSortChange={this._onSortChange}
-                sortDir={colSortDirs.id}>
-                ID
-              </SortHeaderCell>
-            }
-            cell={<TextCell data={filteredDataList} />}
-            flexGrow={0.5}
-            width={5}
-            align='center'
           />
           <Column
             header={<Cell>Details</Cell>}
@@ -438,7 +423,7 @@ let ResponsiveGrid = Dimensions({
     return window.innerHeight - 300
   },
   getWidth: function (element) {
-    var widthOffset = window.innerWidth < 680 ? 0 : 240
+    var widthOffset = window.innerWidth < 680 ? 30 : 240
     return window.innerWidth - widthOffset
   }
 })(RecipeGrid)
