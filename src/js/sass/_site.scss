@@ -6,6 +6,18 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.footer {
+  padding: 3rem 1.5rem;
+  background: lighten($bodyBackgroundColor, 10%);
+  color: #999;
+  margin: 3rem 0;
+  text-align: center;
+  a {
+      position: relative;
+      top: 4px;
+  }
+}
+
 .clear {
   clear: both;
 }
@@ -66,18 +78,6 @@ a:hover {
 }
 
 .about-us-wrapper {
-  p.me.intro {
-    margin-top: 3rem;
-
-    @media (min-width: 768px) {
-      margin-top: 8rem;
-    }
-
-    @media (min-width: 1200px) {
-      margin-left: -8vw;
-      max-width: calc(100% - 8vw);
-    }
-  }
   .social {
     display: inline-block;
     margin-top: 1.1rem;

@@ -32,6 +32,46 @@ class ErrorComponent extends React.Component {
   }
 }
 
+class FooterCont extends React.Component {
+  constructor () {
+    super()
+  }
+  render () {
+    let iconStyle = {
+      marginRight: '0.5rem',
+      marginLeft: '0.5rem',
+      fontSize: '2.4rem',
+      color: '#999'
+    }
+    let links = [
+      'http://github.com/johnfrog76/',
+      'http://www.linkedin.com/pub/john-webster/16/787/995',
+      'http://twitter.com/johnfrog76/'
+    ]
+
+    return (
+      <span className='social'>
+        <span>John Webster &bull;</span>
+        <a href={links[0]}
+          target='_blank'
+          style={iconStyle}>
+          <i className='fa fa-github' />
+        </a>
+        <a href={links[1]}
+          target='_blank'
+          style={iconStyle}>
+          <i className='fa fa-linkedin-square' />
+        </a>
+        <a href={links[2]}
+          style={iconStyle}
+          target='_blank'>
+          <i className='fa fa-twitter' />
+        </a>
+      </span>
+    )
+  }
+}
+
 class AboutUs extends React.Component {
   constructor () {
     super()
@@ -42,48 +82,16 @@ class AboutUs extends React.Component {
     'If I\'m not doing that, you will find me walking my favorite dog, Rosie!'
     let project = 'This site is a sandbox built for exploring ' +
     'patterns with React and Redux.'
-    let iconStyle = {
-      marginRight: '1rem'
-    }
-    let links = [
-      'http://github.com/johnfrog76/',
-      'http://www.linkedin.com/pub/john-webster/16/787/995',
-      'http://twitter.com/johnfrog76/'
-    ]
+
     return (
       <div className='about-us-wrapper'>
         <h1>About</h1>
         <p>{project}</p>
         <h2>Me</h2>
-        <div className='row'>
-          <div class='col-sm-3'>
-            <div className='photos-me-wrapper'>
-              <div className='about-me' />
-              <div className='about-me family' />
-            </div>
-          </div>
-          <div class='col-sm-1' />
-          <div class='col-sm-8'>
-            <p className='me intro'>{me}
-              <br />
-              <span className='social'>
-                <a href={links[0]}
-                  target='_blank'
-                  style={iconStyle}>
-                  <i className='fa fa-github' />
-                </a>
-                <a href={links[1]}
-                  target='_blank'
-                  style={iconStyle}>
-                  <i className='fa fa-linkedin-square' />
-                </a>
-                <a href={links[2]}
-                  target='_blank'>
-                  <i className='fa fa-twitter' />
-                </a>
-              </span>
-            </p>
-          </div>
+        <p>{me}</p>
+        <div className='photos-me-wrapper'>
+          <div className='about-me' />
+          <div className='about-me family' />
         </div>
       </div>
     )
@@ -435,5 +443,6 @@ export {
   RecipeTable,
   RecipeViewDetails,
   ErrorComponent,
-  ResponsiveGrid
+  ResponsiveGrid,
+  FooterCont
 }

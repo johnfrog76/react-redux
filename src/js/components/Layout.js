@@ -64,6 +64,7 @@ import {
   ResponsiveGrid,
   RecipeViewDetails,
   ErrorComponent,
+  FooterCont
 } from '../components/All'
 
 import {
@@ -323,6 +324,9 @@ export default class Layout extends React.Component {
             {tab}
           </div>
         </div>
+      </div>
+      <div className='footer'>
+        <FooterCont />
       </div>
     </div>
   }
